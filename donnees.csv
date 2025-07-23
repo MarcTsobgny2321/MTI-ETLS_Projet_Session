@@ -1,0 +1,6 @@
+id,type_matiere,volume_tonnes,cout_traitement,emissions_ges,taux_valorisation,producteur,site_valorisation,date
+1,Bois CRD,45.2,800,120.5,0.75,Ville de Montréal,Compost Québec,2023-01-15
+2,Plastique agricole,12.3,300,45.2,0.6,Ferme Lavoie,AgriRecyc,2023-02-10
+3,Organique,78.9,950,80.3,0.9,MRC Rivière-du-Nord,Biométhane Rive-Nord,2023-03-05
+4,Gypse,6.1,120,12.1,0.4,Chantier ABC,CDE Recyclage,2023-04-22
+5,Bois CRD,32.0,600,95.0,0.8,MRC Rivière-du-Nord,CDE Recyclage,2023-05-12
