@@ -39,21 +39,39 @@ git push origin feature/nouvelle-fonctionnalite
 6. **Exécuter le pipeline ETL et les notebooks d’analyse**
    - Suivez l’ordre des notebooks pour extraire, transformer, analyser et visualiser vos données.
 
+## Exécution automatique du projet
+
+Pour automatiser l'ensemble du pipeline ETL, l'analyse et la génération du dashboard, exécutez simplement le script suivant :
+
+```bash
+python run_pipeline.py
+```
+
+Ce script orchestre l'exécution des notebooks dans le bon ordre, gère les dépendances et génère automatiquement le dashboard HTML final dans le dossier `generated/`. Le dashboard s'ouvre ensuite dans votre navigateur par défaut.
+
+---
+
 ## Structure principale
 
-```
 MTI/
-├── process/                # Notebooks ETL, analyse, dashboard
-├── dataset/                  # Données sources et résultats intermédiaires
-├── .env                      # Variables d’environnement (à créer)
-├── requirements.txt          # Dépendances
-└── README.md                 # Ce guide
+├── process/ # Notebooks ETL, analyse, dashboard
+│ ├── 00_Assemblage.ipynb # Acquisition et structuration des données
+│ ├── 04_Visualisation_Geospatiale.ipynb # Cartographie et analyses spatiales
+│ ├── 05_Tableaux_de_Bord.ipynb # Indicateurs et visualisations
+│ ├── 06_BI_Build_Dashboard.ipynb # Génération du dashboard HTML
+│ └── 99_Documentation.ipynb # Rapport synthétique et business
+├── dataset/ # Données sources et résultats intermédiaires
+├── generated/ # Outputs : dashboard HTML, graphiques, cartes
+│ ├── dashboard.html # Dashboard interactif généré automatiquement
+│ ├── graphs/ # Graphiques PNG
+│ └── sites/ # Cartes interactives HTML
+├── .env # Variables d’environnement (à créer)
+├── requirements.txt # Dépendances
+└── README.md # Ce guide
+
 ```
 
 ## Support
 
-Pour toute question, ouvrez une issue sur GitHub ou contactez [MarcTsobgny2321](https://github.com/MarcTsobgny2321).
-
----
-
-**Développé pour l’économie circulaire – MTI UQAM**
+**Développé pour l’économie circulaire – MTI UQAM & ETS**
+```
