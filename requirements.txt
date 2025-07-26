@@ -1,20 +1,9 @@
-# Core Data Science & ETL packages
-pandas==2.3.1
-numpy==2.3.1
-sqlalchemy==2.0.41
-mysql-connector-python==9.4.0
-
-# Data Visualization
-matplotlib==3.10.3
-seaborn==0.13.2
-
-# Jupyter Notebook support
-jupyter==1.1.1
-notebook==7.4.4
-ipykernel==6.30.0
-
-# Environment management
-python-dotenv==1.1.1
-
-# Additional useful packages
-requests==2.32.4
+numpy
+pandas
+matplotlib
+seaborn
+folium
+SQLAlchemy
+mysql-connector-python
+python-dotenv
+jupyter
