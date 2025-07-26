@@ -4,6 +4,15 @@ import os
 import sys
 import time
 import pandas as pd
+import shutil
+from math import ceil
+
+folders_to_remove = ['dataset', 'generated', 'out_process']
+# Supprimer les dossiers listés dans folders_to_remove s'ils existent
+for folder in folders_to_remove:
+    if os.path.exists(folder):
+        shutil.rmtree(folder)
+        print(f"Dossier supprimé : {folder}")
 
 notebooks = [
     'process/00_Assemblage.ipynb',
@@ -19,7 +28,11 @@ output_folder = 'out_process'
 if not os.path.exists(output_folder):
     os.makedirs(output_folder, exist_ok=True)
 
-for nb in notebooks:
+total_nb = len(notebooks)
+for idx, nb in enumerate(notebooks, 1):
+    progress = ceil((idx / total_nb) * 50)  # 50 caractères pour la barre
+    bar = '[' + '#' * progress + '-' * (50 - progress) + f'] {idx}/{total_nb}'
+    print(f"Progression : {bar}")
     print(f"Exécution de {nb}...")
     cmd = [
         "jupyter", "nbconvert", "--to", "notebook", "--execute",
@@ -27,23 +40,36 @@ for nb in notebooks:
         "--output-dir", output_folder,
         nb
     ]
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    print(result.stdout)
-    if result.returncode != 0:
-        print(f"Erreur lors de l'exécution de {nb} : {result.stderr}")
+    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    nb_prefix = f"[{os.path.basename(nb)}] "
+    while True:
+        output = process.stdout.readline()
+        if output:
+            print(nb_prefix + output.strip())
+        err = process.stderr.readline()
+        if err:
+            print(nb_prefix + "[stderr] " + err.strip())
+        if output == '' and err == '' and process.poll() is not None:
+            break
+    returncode = process.poll()
+    if returncode != 0:
+        print(f"Erreur lors de l'exécution de {nb}")
         print("Arrêt du pipeline.")
-        sys.exit(result.returncode)
+        sys.exit(returncode)
 
-file_path = '../dataset/faits_matieres.csv'  # Adaptez le chemin si besoin
-timeout = 30  # secondes
-waited = 0
-while not os.path.exists(file_path) and waited < timeout:
-    print(f"Attente de la création du fichier {file_path}...")
-    time.sleep(2)
-    waited += 2
-if not os.path.exists(file_path):
-    raise FileNotFoundError(f"Le fichier {file_path} n'a pas été trouvé après {timeout} secondes.")
 
-faits_matieres = pd.read_csv(file_path)
-
-print("Pipeline ETL/BI terminé.")
+print("🎉 Pipeline ETL/BI terminé avec succès ! 🎉")
+print(r"""
+    ______________________
+       |                      |
+       |   DATA WAREHOUSE     |
+       |______________________|
+     /   /   /   /   /   /
+    /___/___/___/___/___/
+       | BI DASHBOARDS      |
+       |   📊 📈 📉         |
+       |____________________|
+    \  🚀  🎉  🤖  /
+     `--------------`
+Bravo ! Vos données sont prêtes pour l'analyse BI ! 🚀✨
+""")
