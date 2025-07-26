@@ -20,7 +20,8 @@ notebooks = [
     'process/02_ETL_Dimensions.ipynb',
     'process/03_Analyse_Exploratoire.ipynb',
     'process/04_Visualisation_Geospatiale.ipynb',
-    'process/05_Tableaux_de_Bord.ipynb'
+    'process/05_Tableaux_de_Bord.ipynb',
+    'process/06_BI_Build_Dashboard.ipynb'
     # Ajoutez d'autres notebooks si besoin
 ]
 
