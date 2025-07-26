@@ -84,4 +84,7 @@ logs/
 *.bak
 *.backup
  
+# Generated files and folders
+generated/*
 
+out_process/*

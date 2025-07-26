@@ -8,3 +8,5 @@ mysql-connector-python
 python-dotenv
 jupyter
 shapely
+papermill
+openpyxl
