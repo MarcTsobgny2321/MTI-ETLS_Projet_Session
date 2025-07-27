@@ -3,8 +3,6 @@ pandas
 matplotlib
 seaborn
 folium
-SQLAlchemy
-mysql-connector-python
 python-dotenv
 jupyter
 shapely
