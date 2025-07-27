@@ -26,14 +26,18 @@ git push origin feature/nouvelle-fonctionnalite
    pip install -r requirements.txt
    ```
 
-4. **Configurer la base de données**
+4. **Configurer le l'environnement**
 
-   - Renseigner vos paramètres dans le fichier `.env` (voir exemple dans le projet)
+   - Renseigner vos paramètres dans le fichier `.env` en vous referent au ficher `.env.example`
 
-5. **Lancer Jupyter Notebook**
+5. **Lancer Jupyter Notebook ou votre editer de choix**
 
    ```bash
    jupyter notebook
+   ```
+
+   ```bash
+   code .
    ```
 
 6. **Exécuter le pipeline ETL et les notebooks d’analyse**
@@ -53,25 +57,28 @@ Ce script orchestre l'exécution des notebooks dans le bon ordre, gère les dép
 
 ## Structure principale
 
+```
 MTI/
-├── process/ # Notebooks ETL, analyse, dashboard
-│ ├── 00_Assemblage.ipynb # Acquisition et structuration des données
-│ ├── 04_Visualisation_Geospatiale.ipynb # Cartographie et analyses spatiales
-│ ├── 05_Tableaux_de_Bord.ipynb # Indicateurs et visualisations
-│ ├── 06_BI_Build_Dashboard.ipynb # Génération du dashboard HTML
-│ └── 99_Documentation.ipynb # Rapport synthétique et business
-├── dataset/ # Données sources et résultats intermédiaires
-├── generated/ # Outputs : dashboard HTML, graphiques, cartes
-│ ├── dashboard.html # Dashboard interactif généré automatiquement
-│ ├── graphs/ # Graphiques PNG
-│ └── sites/ # Cartes interactives HTML
-├── .env # Variables d’environnement (à créer)
-├── requirements.txt # Dépendances
-└── README.md # Ce guide
-
+├── process/                  # Notebooks ETL, analyse, dashboard
+│   ├── 00_Assemblage.ipynb   # Acquisition et structuration des données
+│   ├── 04_Visualisation_Geospatiale.ipynb # Cartographie et analyses spatiales
+│   ├── 05_Tableaux_de_Bord.ipynb          # Indicateurs et visualisations
+│   ├── 06_BI_Build_Dashboard.ipynb        # Génération du dashboard HTML
+│   └── 99_Documentation.ipynb             # Rapport synthétique et business
+├── dataset/                  # Données sources et résultats intermédiaires
+├── generated/                # Outputs : dashboard HTML, graphiques, cartes
+│   ├── dashboard.html        # Dashboard interactif généré automatiquement
+│   ├── graphs/               # Graphiques PNG
+│   └── sites/                # Cartes interactives HTML
+├── .env                      # Variables d’environnement (à créer)
+├── requirements.txt          # Dépendances
+└── README.md                 # Ce guide
 ```
 
 ## Support
 
 **Développé pour l’économie circulaire – MTI UQAM & ETS**
+
+```
+
 ```
