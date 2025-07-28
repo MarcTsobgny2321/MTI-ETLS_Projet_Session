@@ -91,3 +91,4 @@ out_process/*
 
 dataset/*
 ref/*
+cache/*

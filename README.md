@@ -48,7 +48,13 @@ git push origin feature/nouvelle-fonctionnalite
 Pour automatiser l'ensemble du pipeline ETL, l'analyse et la génération du dashboard, exécutez simplement le script suivant :
 
 ```bash
-python run_pipeline.py
+python run_pipeline.py --refresh
+```
+
+Start only http server
+
+```bash
+python run_pipeline.py --start
 ```
 
 Ce script orchestre l'exécution des notebooks dans le bon ordre, gère les dépendances et génère automatiquement le dashboard HTML final dans le dossier `generated/`. Le dashboard s'ouvre ensuite dans votre navigateur par défaut.
@@ -59,20 +65,30 @@ Ce script orchestre l'exécution des notebooks dans le bon ordre, gère les dép
 
 ```
 MTI/
-├── process/                  # Notebooks ETL, analyse, dashboard
-│   ├── 00_Assemblage.ipynb   # Acquisition et structuration des données
+├── process/                        # Notebooks ETL, analyse, visualisation, dashboard, documentation
+│   ├── 00_Assemblage.ipynb         # Acquisition et structuration des données
+│   ├── 01_ETL_FaitsMatieres.ipynb  # Extraction et transformation des faits matières
+│   ├── 02_ETL_Dimensions.ipynb     # Construction des dimensions (producteur, site, matière, temps)
+│   ├── 03_Load.ipynb               # Chargement et persistance des données structurées
 │   ├── 04_Visualisation_Geospatiale.ipynb # Cartographie et analyses spatiales
-│   ├── 05_Tableaux_de_Bord.ipynb          # Indicateurs et visualisations
-│   ├── 06_BI_Build_Dashboard.ipynb        # Génération du dashboard HTML
-│   └── 99_Documentation.ipynb             # Rapport synthétique et business
-├── dataset/                  # Données sources et résultats intermédiaires
-├── generated/                # Outputs : dashboard HTML, graphiques, cartes
-│   ├── dashboard.html        # Dashboard interactif généré automatiquement
-│   ├── graphs/               # Graphiques PNG
-│   └── sites/                # Cartes interactives HTML
-├── .env                      # Variables d’environnement (à créer)
-├── requirements.txt          # Dépendances
-└── README.md                 # Ce guide
+│   ├── 05_Visualisation_Geospatiale.ipynb # Visualisation géospatiale avancée
+│   ├── 06_BI_Build_Element_Tableaux_de_Bord.ipynb # Indicateurs, KPIs, tableaux de bord
+│   └── 99_Documentation.ipynb      # Rapport synthétique et business
+├── dataset/                        # Données sources et résultats intermédiaires (CSV, JSON)
+├── generated/                      # Outputs : dashboard HTML, graphiques, cartes, CSV normalisés
+│   ├── dashboard.html              # Dashboard interactif généré automatiquement
+│   ├── graphs/                     # Graphiques PNG
+│   ├── normalized/                 # Données normalisées
+│   └── sites/                      # Cartes interactives HTML
+├── out_process/                    # Notebooks/outils intermédiaires ou archivés
+├── cache/                          # Fichiers de cache (ex : géocodage)
+├── ref/                            # Référentiels, documentation, sources externes (PDF, etc.)
+├── .env                            # Variables d’environnement (à créer)
+├── .env.example                    # Exemple de configuration d’environnement
+├── requirements.txt                # Dépendances Python
+├── run_pipeline.py                 # Script d’orchestration du pipeline complet
+├── README.md                       # Ce guide
+└── POC_Presentation.md             # Présentation métier et technique du POC
 ```
 
 ## Support
