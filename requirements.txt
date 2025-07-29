@@ -8,3 +8,4 @@ jupyter
 shapely
 papermill
 openpyxl
+geopy
